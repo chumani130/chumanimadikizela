@@ -9,8 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-@Setter
-@Getter
 @Table(name = "Recycling Tips")
 public class RecyclingTip {
     @Id
