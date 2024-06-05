@@ -9,8 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Getter
-@Setter
 @Table(name = "Disposal Guidelines")
 public class DisposalGuideLine {
 
