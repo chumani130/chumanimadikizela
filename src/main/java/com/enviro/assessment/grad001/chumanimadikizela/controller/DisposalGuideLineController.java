@@ -39,6 +39,7 @@ public class DisposalGuideLineController {
     }
 
     // delete
+    @DeleteMapping
     public void deleteGuideLineById(@PathVariable Long id) {
         disposalGuideLineService.deleteGuideLine(id);
     }
