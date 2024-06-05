@@ -8,7 +8,6 @@ public interface DisposalGuideLineService {
     public List<DisposalGuideLineDTO> getAllGuideLines();
 
     public DisposalGuideLineDTO getGuideLineById(Long id);
-
     public DisposalGuideLineDTO createGuideLine(DisposalGuideLineDTO disposalGuideLineDTO);
 
     public DisposalGuideLineDTO updateGuideLine(Long id, DisposalGuideLineDTO disposalGuideLineDTO);
