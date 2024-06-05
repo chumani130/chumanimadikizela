@@ -6,8 +6,6 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class WasteCategoryDTO {
     private Long id;
     private String name;
