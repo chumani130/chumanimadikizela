@@ -1,14 +1,13 @@
 package com.enviro.assessment.grad001.chumanimadikizela.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class RecyclingTipDTO {
 
     private Long id;
