@@ -6,8 +6,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Setter
-@Getter
 public class DisposalGuideLineDTO {
 
     private Long id;
