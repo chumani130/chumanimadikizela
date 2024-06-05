@@ -9,8 +9,6 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-@Getter
-@Setter
 @Table(name="Waste Category")
 public class WasteCategory {
     @Id
