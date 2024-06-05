@@ -17,7 +17,7 @@ public interface WasteCategoryService {
 
         public WasteCategoryDTO createCategory(WasteCategoryDTO wasteCategoryDTO);
 
-        public WasteCategoryDTO update(Long id, WasteCategoryDTO wasteCategoryDTO);
+        public WasteCategoryDTO updateCategory(Long id, WasteCategoryDTO wasteCategoryDTO);
 
 
         void deleteCategoryById(Long id);
