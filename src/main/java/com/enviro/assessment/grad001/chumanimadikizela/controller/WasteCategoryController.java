@@ -41,6 +41,7 @@ public class WasteCategoryController {
     }
 
     // delete
+    @DeleteMapping
     public void deleteCategoryById(@PathVariable Long id) {
         wasteCategoryService.deleteCategoryById(id);
     }
