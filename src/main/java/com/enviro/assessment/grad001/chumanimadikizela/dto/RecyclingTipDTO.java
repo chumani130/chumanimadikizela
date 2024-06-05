@@ -6,8 +6,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
 public class RecyclingTipDTO {
 
     private Long id;
