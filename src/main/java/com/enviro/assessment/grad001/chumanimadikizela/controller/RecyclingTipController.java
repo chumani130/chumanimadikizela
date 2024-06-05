@@ -41,6 +41,7 @@ public class RecyclingTipController {
     }
 
     // delete
+    @DeleteMapping
     public void deleteRecycleTipById(@PathVariable Long id) {
         recyclingTipService.getRecyclingTiById(id);
     }
