@@ -14,12 +14,8 @@ import java.util.stream.Collectors;
 public interface WasteCategoryService {
         public List<WasteCategoryDTO> getAllCategories();
         public WasteCategoryDTO getCategoryById(Long id);
-
         public WasteCategoryDTO createCategory(WasteCategoryDTO wasteCategoryDTO);
-
         public WasteCategoryDTO updateCategory(Long id, WasteCategoryDTO wasteCategoryDTO);
-
-
         void deleteCategoryById(Long id);
 
 }
