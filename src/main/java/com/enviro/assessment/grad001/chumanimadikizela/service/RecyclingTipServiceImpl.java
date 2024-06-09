@@ -19,21 +19,22 @@ public class RecyclingTipServiceImpl implements RecyclingTipService {
     @Override
     public List<RecyclingTipDTO> getAllRecyclingTips() {
         List<RecyclingTip> recyclingTips = recyclingTipRepository.findAll();
-        return recyclingTips.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return recyclingTips.stream().map(this::transformTipsToDTO).collect(Collectors.toList());
     }
 
     @Override
     public RecyclingTipDTO getRecyclingTiById(Long id) {
         Optional<RecyclingTip> recyclingTip = recyclingTipRepository.findById(id);
-        return recyclingTip.map(this::convertToDTO).orElse(null);
+        return recyclingTip.map(this::transformTipsToDTO).orElse(null);
     }
 
     @Override
     public RecyclingTipDTO createRecyclingTip(RecyclingTipDTO recyclingTipDTO) {
-        RecyclingTip recyclingTip = new RecyclingTip();
-        recyclingTip.setTip(recyclingTip.getTip());
+        RecyclingTip recyclingTip = RecyclingTip.builder()
+                .tip(recyclingTipDTO.getTip())
+                .build();
         RecyclingTip savedTip = recyclingTipRepository.save(recyclingTip);
-        return convertToDTO(savedTip);
+        return transformTipsToDTO(savedTip);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class RecyclingTipServiceImpl implements RecyclingTipService {
             RecyclingTip recyclingTip = optionalRecyclingTip.get();
             recyclingTip.setTip(recyclingTipDTO.getTip());
             RecyclingTip savedTip = recyclingTipRepository.save(recyclingTip);
-            return convertToDTO(savedTip);
+            return transformTipsToDTO(savedTip);
         } else {
             return null;
         }
@@ -52,10 +53,17 @@ public class RecyclingTipServiceImpl implements RecyclingTipService {
     public void DeleteRecyclingTipById(Long id) {
         recyclingTipRepository.deleteById(id);
     }
-    private RecyclingTipDTO convertToDTO(RecyclingTip recyclingTip) {
-        RecyclingTipDTO dto = new RecyclingTipDTO();
-        dto.setId(recyclingTip.getId());
-        dto.setTip(recyclingTip.getTip());
-        return dto;
+    /**
+     * this is our custom mapper, that maps our entity to our dtos
+     *transformTipsToDTO converting entity into dto
+     * @param recyclingTip
+     * @return RecyclingTipDTO
+     */
+    private RecyclingTipDTO transformTipsToDTO(RecyclingTip recyclingTip) {
+        return RecyclingTipDTO
+                .builder()
+                .id(recyclingTip.getId())
+                .tip(recyclingTip.getTip())
+                .build();
     }
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Disposal Guidelines")
+@Table(name = "disposal_guidelines")
 public class DisposalGuideLine {
 
     @Id

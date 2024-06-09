@@ -18,19 +18,20 @@ public class WasteCategoryServiceImpl implements WasteCategoryService{
     @Override
     public List<WasteCategoryDTO> getAllCategories() {
         List<WasteCategory> wasteCategories = wasteCategoryRepository.findAll();
-        return wasteCategories.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return wasteCategories.stream().map(this::transformWasteCategoryToDTO).collect(Collectors.toList());
     }
     @Override
     public WasteCategoryDTO getCategoryById(Long id) {
         Optional<WasteCategory> wasteCategory = wasteCategoryRepository.findById(id);
-        return wasteCategory.map(this::convertToDTO).orElse(null);
+        return wasteCategory.map(this::transformWasteCategoryToDTO).orElse(null);
     }
     @Override
     public WasteCategoryDTO createCategory(WasteCategoryDTO wasteCategoryDTO) {
-        WasteCategory wasteCategory = new WasteCategory();
-        wasteCategory.setName(wasteCategory.getName());
+        WasteCategory wasteCategory = WasteCategory.builder()
+                .name(wasteCategoryDTO.getName())
+                .build();
         WasteCategory savedCategory = wasteCategoryRepository.save(wasteCategory);
-        return convertToDTO(savedCategory);
+        return transformWasteCategoryToDTO(savedCategory);
     }
     @Override
     public WasteCategoryDTO updateCategory(Long id, WasteCategoryDTO wasteCategoryDTO) {
@@ -39,7 +40,7 @@ public class WasteCategoryServiceImpl implements WasteCategoryService{
             WasteCategory wasteCategory = optionalWasteCategory.get();
             wasteCategory.setName(wasteCategoryDTO.getName());
             WasteCategory savedCategory = wasteCategoryRepository.save(wasteCategory);
-            return convertToDTO(savedCategory);
+            return transformWasteCategoryToDTO(savedCategory);
         } else {
             return null;
         }
@@ -48,10 +49,18 @@ public class WasteCategoryServiceImpl implements WasteCategoryService{
     public void deleteCategoryById(Long id) {
         wasteCategoryRepository.deleteById(id);
     }
-    private WasteCategoryDTO convertToDTO(WasteCategory wasteCategory) {
-        WasteCategoryDTO dto = new WasteCategoryDTO();
-        dto.setId(wasteCategory.getId());
-        dto.setName(wasteCategory.getName());
-        return dto;
+
+    /**
+     * this is our custom mapper, that maps our entity to our dtos
+     *transformWasteCategoryToDTO converting entity into dto
+      * @param wasteCategory
+     * @return WasteCategoryDTO
+     */
+    private WasteCategoryDTO transformWasteCategoryToDTO(WasteCategory wasteCategory) {
+        return WasteCategoryDTO
+                .builder()
+                .id(wasteCategory.getId())
+                .name(wasteCategory.getName())
+                .build();
     }
 }

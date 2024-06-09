@@ -10,6 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/disposal-guideline")
 public class DisposalGuideLineController {
+
+
     @Autowired
     private DisposalGuideLineService disposalGuideLineService;
 
@@ -28,7 +30,7 @@ public class DisposalGuideLineController {
     // create
     @PostMapping("/")
     public DisposalGuideLineDTO createGuideLine(@RequestBody DisposalGuideLineDTO disposalGuideLineDTO) {
-        return disposalGuideLineService.createGuideLine(new DisposalGuideLineDTO());
+        return disposalGuideLineService.createGuideLine(disposalGuideLineDTO);
     }
 
     // update

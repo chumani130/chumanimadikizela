@@ -1,9 +1,7 @@
 package com.enviro.assessment.grad001.chumanimadikizela.controller;
 
 import com.enviro.assessment.grad001.chumanimadikizela.dto.RecyclingTipDTO;
-import com.enviro.assessment.grad001.chumanimadikizela.dto.WasteCategoryDTO;
 import com.enviro.assessment.grad001.chumanimadikizela.service.RecyclingTipService;
-import com.enviro.assessment.grad001.chumanimadikizela.service.WasteCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

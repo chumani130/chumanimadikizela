@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-@Table(name = "Recycling Tips")
+@Table(name = "recycling_tips")
 public class RecyclingTip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

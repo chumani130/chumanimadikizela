@@ -1,11 +1,8 @@
 package com.enviro.assessment.grad001.chumanimadikizela.controller;
 
 import com.enviro.assessment.grad001.chumanimadikizela.dto.WasteCategoryDTO;
-import com.enviro.assessment.grad001.chumanimadikizela.model.WasteCategory;
-import com.enviro.assessment.grad001.chumanimadikizela.repository.WasteCategoryRepository;
 import com.enviro.assessment.grad001.chumanimadikizela.service.WasteCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

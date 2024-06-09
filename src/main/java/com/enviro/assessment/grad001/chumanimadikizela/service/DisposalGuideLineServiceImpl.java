@@ -18,21 +18,24 @@ public class DisposalGuideLineServiceImpl implements DisposalGuideLineService {
     @Override
     public List<DisposalGuideLineDTO> getAllGuideLines() {
         List<DisposalGuideLine> disposalGuideLines = disposalGuideLineRepository.findAll();
-        return disposalGuideLines.stream().map(this::convertToDTO).collect(Collectors.toList());
+        return disposalGuideLines.stream().map(this::transformGuideLineToDTO).collect(Collectors.toList());
     }
 
     @Override
     public DisposalGuideLineDTO getGuideLineById(Long id) {
         Optional<DisposalGuideLine> disposalGuideLine = disposalGuideLineRepository.findById(id);
-        return disposalGuideLine.map(this::convertToDTO).orElse(null);
+        return disposalGuideLine.map(this::transformGuideLineToDTO).orElse(null);
     }
 
     @Override
     public DisposalGuideLineDTO createGuideLine(DisposalGuideLineDTO disposalGuideLineDTO) {
-        DisposalGuideLine disposalGuideLine = new DisposalGuideLine();
-        disposalGuideLine.setGuideline(disposalGuideLine.getGuideline());
+        // using build to transform the dto into an entity so that we can create a record
+        // with-in disposal guide table
+        DisposalGuideLine disposalGuideLine = DisposalGuideLine.builder()
+                .guideline(disposalGuideLineDTO.getGuideline())
+                .build();
         DisposalGuideLine savedGuideLine = disposalGuideLineRepository.save(disposalGuideLine);
-        return convertToDTO(savedGuideLine);
+        return transformGuideLineToDTO(savedGuideLine);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class DisposalGuideLineServiceImpl implements DisposalGuideLineService {
             DisposalGuideLine disposalGuideLine = optionalDisposalGuideLine.get();
             disposalGuideLine.setGuideline(disposalGuideLineDTO.getGuideline());
             DisposalGuideLine savedGuideLine = disposalGuideLineRepository.save(disposalGuideLine);
-            return convertToDTO(disposalGuideLine);
+            return transformGuideLineToDTO(disposalGuideLine);
         } else {
             return null;
         }
@@ -52,11 +55,17 @@ public class DisposalGuideLineServiceImpl implements DisposalGuideLineService {
     public void deleteGuideLine(Long id) {
         disposalGuideLineRepository.deleteById(id);
     }
-
-    private DisposalGuideLineDTO convertToDTO(DisposalGuideLine disposalGuideLine) {
-        DisposalGuideLineDTO dto = new DisposalGuideLineDTO();
-        dto.setId(disposalGuideLine.getId());
-        dto.setGuideline(disposalGuideLine.getGuideline());
-        return dto;
+    /**
+     * this is our custom mapper, that maps our entity to our dtos
+     *transformGuideLineToDTO converting entity into dto
+     * @param disposalGuideLine
+     * @return DisposalGuideLineDTO
+     */
+    private DisposalGuideLineDTO transformGuideLineToDTO(DisposalGuideLine disposalGuideLine) {
+        return DisposalGuideLineDTO
+                .builder()
+                .id(disposalGuideLine.getId())
+                .guideline(disposalGuideLine.getGuideline())
+                .build();
     }
 }

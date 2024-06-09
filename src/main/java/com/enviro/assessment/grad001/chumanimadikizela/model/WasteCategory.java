@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-@Table(name="Waste Category")
+@Table(name="waste_category")
 public class WasteCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
